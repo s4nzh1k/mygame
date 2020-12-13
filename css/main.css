@@ -1,1 +1,9 @@
-canvas { background: #eee; }
+canvas { 
+    background: #eee; 
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    margin-top: 300px;
+}
