@@ -1,12 +1,12 @@
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
-var ballRadius = 10;
+var ballRadius = 14;
 var x = canvas.width/2;
-var y = canvas.height-30;
-var dx = 2;
-var dy = -2;
-var paddleHeight = 10;
-var paddleWidth = 75;
+var y = canvas.height-50;
+var dx = 3;
+var dy = -3;
+var paddleHeight = 30;
+var paddleWidth = 150;
 var paddleX = (canvas.width-paddleWidth)/2;
 var paddleY = (canvas.width-paddleWidth)/2;
 var rightPressedUp = false;
@@ -23,19 +23,19 @@ document.addEventListener("keyup", keyUp, false);
 
 // Движение платформ 
 function keyDown(e) {
-    if(e.key === "в") {
+    if(e.key === "в" || e.key === "d") {
         rightPressedUp = true;
     }
-    else if(e.key === "ф") {
+    else if(e.key === "ф" || e.key == "a") {
         leftPressedUp = true;
     }
 }
 
 function keyUp(e) {
-    if(e.key == "Right" || e.key === "в") {
+    if(e.key == "d" || e.key === "в") {
         rightPressedUp = false;
     }
-    else if(e.key == "Left" || e.key == "ф") {
+    else if(e.key == "a" || e.key == "ф") {
         leftPressedUp = false;
     }
 }
@@ -71,7 +71,7 @@ function drawBall() {
 function drawPaddle() {
     ctx.beginPath();
     ctx.rect(paddleX, canvas.height-paddleHeight-10, paddleWidth, paddleHeight);
-    ctx.rect(paddleY, paddleHeight, paddleWidth, paddleHeight);
+    ctx.rect(paddleY, paddleHeight-20, paddleWidth, paddleHeight);
     ctx.fillStyle = "#0095DD";
     ctx.fill();
     ctx.closePath();
@@ -85,12 +85,12 @@ function draw() {
     if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
         dx = -dx;
     }
-    else if(y + dy < ballRadius+10) {
+    else if(y + dy < ballRadius+30) {
         if (x > paddleY && x < paddleY + paddleWidth) {
             dy = -dy;
         }
     }
-    else if(y + dy > canvas.height-ballRadius-10) {
+    else if(y + dy > canvas.height-ballRadius-30) {
         if(x > paddleX && x < paddleX + paddleWidth) {
             dy = -dy;
         }
@@ -103,7 +103,7 @@ function draw() {
         
     }
     // Сброс положения шарика при пропуске
-    if ((y < 15 || y > canvas.height-15) && !ballRadius.resetting) {    
+    if ((y < 23 || y > canvas.height-23) && !ballRadius.resetting) {    
         ballRadius.resetting = true; 
          setTimeout(() => {    
             ballRadius.resetting = false;   
@@ -132,7 +132,7 @@ function draw() {
 
     ctx.fillStyle = "#000";
     ctx.font = "50px Verdana";
-    ctx.fillText(scoreUp + ":" + scoreDown, 220, 270);
+    ctx.fillText(scoreUp + ":" + scoreDown, 350, 370);
 }
 
 var interval = setInterval(draw, 10);
