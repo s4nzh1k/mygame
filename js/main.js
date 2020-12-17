@@ -103,14 +103,72 @@ function draw() {
         
     }
     // Сброс положения шарика при пропуске
-    if ((y < 23 || y > canvas.height-23) && !ballRadius.resetting) {    
+    // Верхняя часть
+    if (y < 23  && !ballRadius.resetting && x < 200) {    
         ballRadius.resetting = true; 
          setTimeout(() => {    
+            ballRadius.resetting = false;   
+            x = canvas.width/2+200;
+            y = canvas.height/2;   
+            }, 20); 
+        }
+    if (y < 23  && !ballRadius.resetting && 200 < x && x <= 400) {    
+        ballRadius.resetting = true; 
+            setTimeout(() => {    
+            ballRadius.resetting = false;   
+            x = canvas.width/2-300;
+            y = canvas.height/2;   
+            }, 20); 
+        }
+    if (y < 23  && !ballRadius.resetting && x > 400 && x <= 600) {    
+        ballRadius.resetting = true; 
+            setTimeout(() => {    
             ballRadius.resetting = false;   
             x = canvas.width/2;
             y = canvas.height/2;   
             }, 20); 
         }
+    if (y < 23  && !ballRadius.resetting && x > 600 && x <= 800) {    
+        ballRadius.resetting = true; 
+            setTimeout(() => {    
+            ballRadius.resetting = false;   
+            x = canvas.width-150;
+            y = canvas.height/2;   
+            }, 20); 
+        }
+    // Нижняя часть                                        
+    if (y > canvas.height-23 && !ballRadius.resetting && x < 200) {    
+        ballRadius.resetting = true; 
+         setTimeout(() => {    
+            ballRadius.resetting = false;   
+            x = canvas.width/2+200;
+            y = canvas.height/2;   
+            }, 20); 
+        }
+    if (y > canvas.height-23 && !ballRadius.resetting && 200 < x && x <= 400) {    
+        ballRadius.resetting = true; 
+            setTimeout(() => {    
+            ballRadius.resetting = false;   
+            x = canvas.width/2-300;
+            y = canvas.height/2;   
+            }, 20); 
+        } 
+    if (y > canvas.height-23 && !ballRadius.resetting && x > 400 && x <= 600) {    
+        ballRadius.resetting = true; 
+            setTimeout(() => {    
+            ballRadius.resetting = false;   
+            x = canvas.width/2;
+            y = canvas.height/2;
+            }, 20); 
+        } 
+    if (y > canvas.height-23 && !ballRadius.resetting && x > 600 && x <= 800) {    
+        ballRadius.resetting = true; 
+            setTimeout(() => {    
+            ballRadius.resetting = false;   
+            x = canvas.width-150;
+            y = canvas.height/2;   
+            }, 20); 
+        }        
     
     //Движение платформ
     if(rightPressedDown && paddleX < canvas.width-paddleWidth) {
